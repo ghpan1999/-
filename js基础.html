@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #div1{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        display: none;
+    }
+    #div2{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+    #div3{
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
+    .day{
+        background-color: skyblue;
+        font-size: "18px";
+    }
+</style>
+<script>
+    //js代码
+    function toBig(){
+        var oDiv = document.getElementById('div3');
+        oDiv.style.width='200px';
+        oDiv.style.height='200px';
+           
+    }
+    function toSmall(){
+        var oDiv = document.getElementById('div3');
+        oDiv.style.width='100px';
+        oDiv.style.height='100px';
+    }
+    function showDay(){
+        document.body.className = 'day';
+        //document.body.style.background = 'skyblue';
+        //document.body.style.fontSize = '14px';
+    }
+    function showNight(){
+        document.body.style.background = 'gray';
+        document.body.style.fontSize = '20px';
+    }
+    function changeColcor(color){
+        document.getElementById('div3').style.background = color;
+    }
+
+    window.onload = function(){
+                //1.获取元素
+                // alert("加载完成");
+                var oBtn = document.getElementById('btn');
+                // 2.加事件 
+                // 3.具体
+                oBtn.onclick = function(){alert(1);};
+            };
+    window.onload = function(){
+        var oUL = document.getElementById('ul1');
+        var aLI = oUL.getElementsByTagName('li');
+        for(var i=0;i<aLI.length;i++){
+            aLI[i].style.background = 'red';
+        };
+        
+    };  
+</script>
+<body>
+    js就是用来写特效的（行为）
+    onclick
+    <input type="button" value="点击" 
+    onclick="document.getElementById('div1').style.display='block'">
+    <div id="div1">div1</div>
+    通过id获取元素
+    document.getElementById('id名字')
+
+    鼠标滑过离开 onmouseover onmouseout
+        <div id="div2" onmouseover=
+        "document.getElementById('div2').style.width='200px'
+        document.getElementById('div2').style.height='200px'"
+        onmouseout="
+        document.getElementById('div2').style.width='100px'
+        document.getElementById('div2').style.height='100px'">
+            div2
+        </div>
+        <div id="div3" onmouseover="toBig()" onmouseout="toSmall()"> 123</div>
+    if 判断
+    <br>
+    换肤
+    <input type="button" value="白" onclick="showDay()">
+    <input type="button" value="黑" onclick="showNight()">
+    <br>
+    变色 传参
+    <input type="button" value="变红" onclick="changeColcor('red')">
+    <input type="button" value="变黄" onclick="changeColcor('yellow')">
+    <input type="button" value="变蓝" onclick="changeColcor('blue')">
+        <br>
+    提取行间数据,时间后面必须接函数，时间后面的函数不需要加（）
+    加载顺序
+        <input type="button" value="弹出"  id="btn">
+    <br>
+    通过标签获取一组元素  getElementsByTagName
+    for循环
+    <div id="box">
+        <ul id="ul1">
+            <li>01</li>
+            <li>02</li>
+            <li>03</li>
+            <li>04</li>
+        </ul>
+    </div> 
+    操作样式和属性的方式
+    修改表单元素 oBtn.value
+    非表单元素 oP.innerHTML
+        <input type="button" value="aaa" id="btn1"> 
+        <p id="p1">aaa</p>
+        <script>
+            var oBtn = document.getElementById('btn1');
+            var oP = document.getElementById('p1');
+            oBtn['style']['background'] = 'green';//[]中可以是变量、字符串、参数
+            oBtn.value = 'bbb';
+            oP.innerHTML = 'bbb';
+        </script>
+</body>
+</html>

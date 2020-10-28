@@ -1,0 +1,58 @@
+JS基础-数据类型
+基本数据类型
+    12 数字 number
+    ‘abc’ string
+    0 1 boolean
+    undefined
+
+复合数据类型
+    object对象
+
+ alert（typeof **）可以看数据类型
+
+显式数据转换
+    parseFloat
+    parseInt 12px-》12
+    Number 更严格 12px-》NaN（not a number）
+    NaN不是数组但是是数字类型  跟谁都不相等
+    检测是不是NaN isNaN
+
+隐式类型转化
+    '12'+5-->'12'+'5'
+    '12'-'5'->12-5 = 7
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload =function(){
+        var txt1 = document.getElementById('txt1');
+        var txt2 = document.getElementById('txt2');
+        var add = document.getElementById('add');
+        add.onclick = function(){
+            //alert(typeof txt1.value);
+            var num1 = parseInt(txt1.value);
+            var num2 = parseInt(txt2.value);
+            alert(num1+num2);
+        };
+        var add2 = document.getElementById('add2');
+        add2.onclick = function(){
+            alert(txt1.value+txt2.value);
+        };
+
+    };
+    </script>
+</head>
+
+<body>
+    <hr>
+    <input type="text" name="" id="txt1">+
+    <input type="text" name="" id="txt2">
+    <input type="button" value="和" id="add">
+    <input type="button" value="和2" id="add2">
+
+</body>
+</html>

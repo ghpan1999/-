@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1" width="800" class="stus">
+        <caption>学生成绩表</caption>
+        <thead>
+        <tr>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>成绩</th>
+            <th>住址</th>
+        </tr>
+        </thead>
+    </table>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    // $.ajax({//请求本地
+    //     type:'get',
+    //     url:'./data.json',
+    //     success:function(students){
+    //         console.log(students);
+    //         for(var i in students){
+    //         console.log(students[i]);
+    //             $('.stus').prepend('<tr><td>' + students[i].id +
+    //                 '</td><td>' + students[i].name + '</td><td>' + students[i].sex +
+    //                 '</td><td>' + students[i].age + '</td><td>' + students[i].score.join('') +
+    //                 '</td><td>' + students[i].addr + '</td></tr>')
+    // }
+    //     },
+    //     error:function(res){
+    //         console.log(err.statusText);
+    //         if(err.status==404){
+    //             location.href = '404.html'
+    //         }
+    //     },
+    // })
+    $.ajax({//请求网页
+        url:'http://www.hspstudio.club/seller',
+        dataType:'jsonp'
+    }).then(function(res){
+        console.log(res)
+    }).catch(function(){
+        console.log('error');
+    })
+</script>
+</html>
+4.Ajax
+    1）什么是Ajax？
+        ajax(Asynchronous Javascript And Xml:异步的JavaScript和XML）,目的是让JavaScript发送http请求，
+    与后台通信，获取数据和信息。
+        Ajax技术的原理是实例化xmlhttp对象，使用此对象与后台通信。在通信过程中不会影响后续的JS的执行，从而实现异步操作。
+    2）同步和异步
+        同步就是做完一件事（任务）后再做另一件事，后一件的执行依赖于前一件事件的完成。同步会影响到后面的JS代码的执行时间。
+        异步是指同时可以做多件事情（任务）。不会影响到后面JS代码的执行时间。
+    3）局部刷新和无刷新
+        Ajax可以实现局部刷新，也叫无刷新，就是整个页面不刷新，
+        只是局部刷新而已。Ajax可以自己发送请求，
+        不用通过浏览器地址栏，所以页面不会刷新。
+5.用Ajax发送请求
+    写法1：
+        $.ajax({
+            type:'get/post',                                // 请求的方式，默认为get
+            url:'请求的文件名或后台接口地址',                 // 请求的地址
+            async:true/false ,                              // 异步或同步，默认为true
+            data:{                                          // 上传到服务器端的数据
+                // 数据
+            },
+            dataType:'json/jsonp/xml/text/javascript',      // 返回的数据类型或解决跨域(jsonp)
+            success:function(res){                          // 成功回调的处理
+                // 成功回调的处理代码
+            },
+            error:function(err){                            // 失败回调的处理
+                // 失败回调的处理代码
+            },
+            timeout:时间（毫秒）,                             // 请求超时时间
+            ...
+        })
+    写法2：
+        $.ajax({
+            type:'get/post',                                // 请求的方式，默认为get
+            url:'请求的文件名或后台接口地址',                // 请求的地址
+            async:true/false ,                              // 异步或同步
+            data:{                                          // 上传到服务器端的数据
+                // 数据
+            },
+            dataType:'json/jsonp/xml/text/javascript',      // 返回的数据类型或解决跨域(jsonp)
+
+            timeout:时间（毫秒）,                             // 请求超时时间
+            ...
+        }).done(function(){                                 // 成功回调的处理
+            ...
+        }).fail(function(){                                 // 失败回调的处理
+            ...
+        })
+
+    写法3（推荐写法）：
+        $.ajax({
+            type:'get/post',                                // 请求的方式，默认为get
+            url:'请求的文件名或后台接口地址',                // 请求的地址
+            async:true/false ,                              // 异步或同步
+            data:{                                          // 上传到服务器端的数据
+                // 数据
+            },
+            dataType:'json/jsonp/xml/text/javascript',      // 返回的数据类型或解决跨域(jsonp)
+
+            timeout:时间（毫秒）,                             // 请求超时时间
+            ...
+        }).then(function(){                                 // 成功回调的处理
+            ...
+        }).catch(function(){                                 // 失败回调的处理
+            ...
+        })
+6.JSONP
+    1）同源策略
+        同源策略 是由NetScape提出的一个著名的安全策略。
+        所谓的同源，指的是协议，域名，端口相同。浏览器处于安全方面的考虑，
+        只允许本域名下的接口交互，不同源的客户端脚本，在没有明确授权的情况下，
+        不能读写对方的资源。
+        http://127.0.0.1:8080  http为协议，127.0.0.1为域名，8080为端口
+
+        只要协议、域名和端口中任意一个不相同，就会出现跨域情况。
+    2）在JQ中解决跨域
+        $.ajax({
+            ...
+            dataType: 'jsonp',
+            ...
+        }).then(function(){
+            ...
+        })
+

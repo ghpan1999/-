@@ -1,0 +1,186 @@
+JQ功能
+1）控制页面样式
+2）访问和操作DOM
+3）事件处理
+4）提供大量插件
+5）Ajax技术的封装
+6）提供大量的动画处理
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        // $(document).ready(function(){//ready 所有DOM加载完成后才执行
+        //     console.log($('.box'))
+        // })
+        //简化写法↓ onload只能写一个，ready事件可以写多个
+        $(function () {
+            // console.log($('.box'))
+            $('#box').css({
+                color: 'blue',
+                background: '#eee'
+            })
+            $('.box').css({
+                color: 'blue',
+                background: 'red',
+                marginBottom: '10px',
+                // 'margin-bottom':'10px',
+            })
+            //逗号选择多个
+            $('#box,.box,p').click(function () {
+                console.log($(this).html())
+            })
+            //简单选择器
+            $('ul li').first().css('color', 'red')
+            $('ul li:last').css('color', 'red')
+            //属性过滤选择器
+            $('p[title=shuxing][id]').css('background', 'green');
+            //属性操作
+            $('#pid1').attr('class', 'box');
+            //元素样式操作
+            $('#pid3').addClass('color')
+
+        })
+    </script>
+    <style>
+        .box {
+            background-color: rgb(243, 159, 159);
+        }
+
+        .color {
+            color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">HELLOW</div>
+    <div id="box">JQuery</div>
+    <p title="shuxing" id="">JQJQJQ</p>
+
+    <p id="pid1">DOM操作</p>
+    <p id="pid2">DOM操作</p>
+    <p id="pid3">DOM操作</p>
+
+
+    层次选择器
+    <ul id="ul1">
+        <li>1 2：1后代的所有2</li>
+        <li>1>2：1子元素的2</li>
+        <li>1+2：1的兄弟元素 第一个</li>
+        <li>1~2：1的所有兄弟元素</li>
+    </ul>
+    <p>过滤选择器</p>
+    <ul id="ul2">
+        <li>简单过滤器</li>
+        :first/first()
+        :last/last()
+        :not(selector) 除selector之外的元素
+        :even 偶数元素
+        :odd 奇数元素
+        :eq(index) 第n个元素
+        :gt(index) 大于第n个后的元素
+        :lt(index) 小于第n个后的元素
+        :header 选择h1-h6
+        <li>内容过滤器</li>
+        :contains(text) 获取指定文本内容的元素
+        :empty 获取不包含子元素和文本内容的元素（空的元素）
+        :has(selector) 获取所有选择器所匹配的元素（含有某元素的）
+        :parent 获取含有子元素或文本的元素（不空的）
+        <li>可见性过滤器</li>
+        :hidden 选择display:none或隐藏文本域（hidden）
+        :visible 选择display:block（选择所有可见的）
+        <li>属性过滤器</li>
+        [attr] 含有指定属性的元素
+        [attr=value] 获取属性值为value的元素
+        != 不为
+        ^=以value开头的
+        $=以~结尾
+        *=含有
+        [attr1][attr2][attr3]含有指定多个属性
+    </ul>
+    <p>表单选择器</p>
+    :input :button :submit :text :password
+    <p>DOM操作</p>
+    <ul>
+        <li>
+            1）属性操作
+            a.获取属性值
+            attr(属性名)
+            b.设置属性
+            attr(属性名,属性值)
+            c.删除属性
+            removeAttr(属性名)</li>
+        <li>
+            2）文本内容操作
+            a.获取文本及表单组件内容
+            html() 可以操作[标签]
+            text() 只能操作[文本]内容，不操作标签
+            val() 只能用于表单组件
+            b.设置（修改）文本及表单组件内容
+            html(内容)
+            text(内容)
+            val(内容)
+            c.删除文本及表单组件内容
+            html('')
+            text('')
+            val('')</li>
+        <li>
+            3）元素样式操作
+            a.设置样式
+            css('属性名','属性值') 设置一个样式
+            css({'属性名1':'属性值1','属性名2':'属性值2',...}) 设置多个样式
+            b.操作类
+            i)添加类
+            addClass('类名') 添加一个类名
+            或：
+            addClass('类名1 类名2 ....') 添加多个类名
+            ii)删除类
+            removeClass() 清空类名
+            或：
+            removeClass('类名') 清除指定的类名
+            或：
+            removeClass('类名1 类名2 ....') 清除指定的多个类名</li>
+        <li>
+            4）页面元素操作
+            a.创建DOM节点
+                $(dom节点内容)
+            b.在内部添加DOM节点
+                append() 在内部的最后添加DOM
+                appendTo() 将DOM添加到内部的最后
+                prepend() 在内部的最前面添加DOM
+                prependTo() 将DOM添加到内部的最前面
+            c.在外部添加DOM节点
+                before() 在当前DOM前添加（同级添加）
+                insertBefore() 把DOM添加到当前元素之前（同级添加）
+                after() 在当前DOM之后添加（同级添加）
+                insertAfter() 把DOM添加到当前元素之后（同级添加）
+            d.复制DOM节点
+                clone() 只复制DOM元素
+                clone(true) 复制DOM及绑定在它上面的事件
+            e.删除DOM节点
+                remove() 删除当前DOM及子元素
+                remove(dom节点) 在同级DOM中删除指定的DOM
+                empty() 删除当前DOM下的子元素，保留当前DOM</li>
+    </ul>
+
+
+
+
+
+</body>
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    // console.dir($);
+    // $('.box').html('HELLOW JQ')
+    // .css('color','red')
+    // .mouseover(function(){
+    //     $(this).fadeOut(2000)
+    // })
+</script> -->
+
+</html>

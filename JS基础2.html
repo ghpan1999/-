@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .on{
+            background-color: red;
+        }
+        .off{
+            background-color: ivory;
+        }
+        .box2{
+            width: 300px;
+            height: 200px;
+            border: 1px solid khaki;
+            display: none;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var oR = document.getElementById('reverse');
+            var oC = document.getElementById('c1');
+            oR.onclick = function(){
+            oC.checked = !oC.checked;
+        };
+        }
+        window.onload = function(){
+            var oCall = document.getElementById('all');
+            var oBox = document.getElementById('box');
+            var aCh = oBox.getElementsByTagName('input');
+            oCall.onclick = function(){
+                for(var i=0;i<aCh.length;i++){
+                    aCh[i].checked = oCall.checked;
+                }
+            };
+            for(var i=0;i<aCh.length;i++){
+                aCh[i].onclick = function(){
+                    var count = 0;
+                    for(var i=0;i<aCh.length;i++){
+                        if(aCh[i].checked){
+                            count++;
+                        }
+                    }
+                    if(count == aCh.length){
+                        oCall.checked = true;
+                    }else{
+                        oCall.checked = false;
+                    }    
+                }
+            
+            }
+            
+
+        };
+        window.onload = function(){
+            
+            var oBox2 = document.getElementById('box2');
+            var aBtn =oBox2.getElementsByTagName
+            ('input');
+            var oBox3 = document.getElementById('box3');
+            var adiv = oBox3.getElementsByTagName('div');
+            for(var i = 0;i < aBtn.length; i++){
+                aBtn[i].nnn = i;
+                aBtn[i].onclick = function(){
+                    //循环里面用事件i有问题  全是3 
+                    //for循环一瞬间完成 点击前已经3 所以用this
+                    
+                    for(var j=0;j<aBtn.length;j++){
+                        aBtn[j].className = '';
+                        adiv[j].style.display = 'none';
+                    }//for循环里的for循环没问题，不用用this
+                    this.className = 'on';
+                    adiv[this.nnn].style.display = 'block';
+                } 
+                
+
+            }
+        };
+    </script>
+</head>
+<body>
+    <input type="button" value="单个复选框反选" id = "reverse">
+    <div id="box">
+        <input type="checkbox" name="" id="c1">
+        <input type="checkbox" name="" id="c2">
+        <input type="checkbox" name="" id="c3">
+    </div>
+    <hr>
+    <input type="checkbox" name="" id="all" value="全选">
+<br>
+    <div id="box2">
+        <input type="button" value="aaa" class="on">
+        <input type="button" value="bbb">
+        <input type="button" value="ccc">
+    </div>
+    <div id="box3">
+        <div class="box2" style="display:block">aaa</div>
+        <div class="box2">bbb</div>
+        <div class="box2">ccc</div>
+    </div>
+</body>
+</html>

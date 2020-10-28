@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            var oBtn1 = document.getElementById('btn1');
+            var oBtn2 = document.getElementById('btn2');
+            var oTxt = document.getElementById('txt');
+            var oUl = document.getElementById('ul');
+            var aLi = oUl.children;
+            //btn -> body ->html->document
+            //alert(oBtn1.parentNode.parentNode.parentNode);
+            console.log(aLi[1].innerHTML);
+            //上一个下一个节点
+            var oLi3 = document.getElementById('li3');
+            var oNext = oLi3.nextElementSibling||oLi3.nextSibling;
+            oNext.style.background = 'red';
+            var oPrev = oLi3.previousElementSibling||oLi3.previousSibling;
+            oPrev.style.background = 'green';
+            //删除节点
+            oBtn1.onclick =function(){
+                var oLi1 = oUl.firstChild||oUl.firstElementChild;
+                oUl.removeChild(oLi1);
+            };
+            oBtn2.onclick =function(){
+                //创建节点
+                var oLi1 = document.createElement('li');
+                oLi1.innerHTML = oTxt.value;
+                //插入到指定的父级下
+                if(oUl.children.length == 0){
+                    oUl.appendChild(oLi1);
+                }
+                else{
+                    oUl.insertBefore(oLi1,oUl.children[0]);
+                }
+
+                oTxt.value = '';
+            };
+
+    };
+    </script>
+</head>
+<body>
+    
+    <input type="button" value="aaa" id="btn1">
+    <input type="button" value="bbb" id="btn2">
+    <input type="text" name="" id="txt">
+    <ul id="ul">
+        <li>01</li>
+        <li>02</li>
+        <li id="li3">03</li>
+        <li>04</li>
+    </ul>
+</body>
+</html>

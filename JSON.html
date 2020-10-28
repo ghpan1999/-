@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>员工信息</h2>
+    <table border="1" width="400" class="employee">
+    <tr>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+    </tr>
+    </table>
+<ul class="score"></ul>
+
+<table border="1" width="800" class="stus">
+    <caption>学生成绩表</caption>
+    <thead>
+    <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>成绩</th>
+        <th>住址</th>
+    </tr>
+    </thead>
+</table>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+
+<script>
+    var obj = {
+        id: '937493',
+        name: 'Tom',
+        sex: 'male',
+        age: 18,
+        addr: 'ShenZhen China'
+    };
+    console.log(obj);
+    var str = '<tr><td>' + obj.id+'</td><td>' + obj.name+
+                    '</td><td>' + obj.sex+'</td><td>' + obj.age+
+                    '</td><td>' + obj.addr+'</td></tr>';
+    $('.employee').append(str);
+    //2.数组
+    var score = [78,89,90,100,56,88];
+    score.forEach(function(value,index){
+        console.log(value);
+        $('.score').append('<li>' + value + '</li>');
+    })
+    //3.复杂
+    var students = [
+            {
+                id: '937493',
+                name: 'Tom',
+                sex: 'male',
+                age: 18,
+                score: [78, 89, 90, 100, 56, 88],
+                addr: '广东深圳'
+            },
+            {
+                id: '2343',
+                name: 'aaaaa',
+                sex: 'female',
+                age: 19,
+                score: [78, 49, 90, 70, 56, 88],
+                addr: '北京潘家园'
+            },
+            {
+                id: '23546',
+                name: 'bbbbbbbbbbbb',
+                sex: 'male',
+                age: 20,
+                score: [38, 89, 90, 80, 56, 88],
+                addr: '四川成都'
+            }
+        ];
+    for(var i in students){
+        console.log(students[i]);
+        $('.stus').prepend('<tr><td>'+students[i].id+
+        '</td><td>'+students[i].name+'</td><td>'+students[i].sex+
+        '</td><td>'+students[i].age+'</td><td>'+students[i].score.join('')+
+        '</td><td>'+students[i].addr+'</td></tr>')
+    }
+</script>
+</html>
+1.JSON
+    JSON(JavaScript Object Notation：JS对象简谱）是一种轻量级的数据交换格式。
+    JSON是ECMA制定的一个数据表示规范，是ECMAScript的一个子集。采用独立于编程语言的文本格式来存储和表示数据。
+    表示数据结构清晰、简洁、易于阅读和解析。
+    逐渐取代了XML数据格式。
+    它实际上就是一个对象或数组，或对象中含有数组，或数组中含有对象。
+2.JSON的表示方式
+    1）对象表示
+        var obj = {
+            id: '937493',
+            name: 'Tom',
+            sex: 'male',
+            age: 18,
+            addr: 'ShenZhen China'
+        };
+    2）数组
+        var score = [78,89,90,100,56,88]
+    3）复杂表示法（对象+数组）
+        var students = [
+            {
+              id: '937493',
+              name: 'Tom',
+              sex: 'male',
+              age: 18,
+              score: [78,89,90,100,56,88],
+              addr: '广东深圳'
+            },
+            {
+              id: '2343',
+              name: 'aaaaa',
+              sex: 'female',
+              age: 19,
+              score: [78,49,90,70,56,88],
+              addr: '北京潘家园'
+            },
+            {
+              id: '23546',
+              name: 'bbbbbbbbbbbb',
+              sex: 'male',
+              age: 20,
+              score: [38,89,90,80,56,88],
+              addr: '四川成都'
+            }
+          ];
+3.JSON文件
+    1）不需要将数据赋给一个变量
+    2）键和字符型值（除数值型、布尔型、null、undefined（一般没有）之外）
+        必须用双引号引起来，不能用单引号或者不引号
+    3）不允许出现分号和多余的逗号
+    4）不能出现注释语句
+    5）文件的扩展名必须是.json
+
+    如：
+        [
+          {
+            "id": "937493",
+            "name": "Tom",
+            "sex": "male",
+            "age": 18,
+            "score": [78,89,90,100,56,88],
+            "addr": "广东深圳"
+          },
+          {
+            "id": "2343",
+            "name": "aaaaa",
+            "sex": "female",
+            "age": 19,
+            "score": [78,49,90,70,56,88],
+            "addr": "北京潘家园"
+          },
+          {
+            "id": "23546",
+            "name": "bbbbbbbbbbbb",
+            "sex": "male",
+            "age": 20,
+            "score": [38,89,90,80,56,88],
+            "addr": "四川成都"
+          }
+        ]
+4.

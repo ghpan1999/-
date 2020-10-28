@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            /* offset: 0px; */
+            position:absolute;
+        }
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+
+    <script>
+        // window.onload=function(){
+        //     var oDiv = document.getElementById('div1');
+        //     var oBtn = document.getElementById('btn1');
+        //     var timer = null;
+        //     // oDiv.style.left = '200' + 'px';
+        //     $("div1").animate({left:'250px'});
+        //     // oBtn.onclick = function(){
+        //     //     clearInterval(timer);
+        //     //     timer = setInterval(function(){
+        //     //         oDiv.style.left =oDiv.offsetLeft+ 10 + 'px';
+        //     //         if(oDiv.offsetLeft == 300 ){
+        //     //             clearInterval(timer);
+        //     //         }
+        //     //     },30);
+        //     // }
+            
+        // }
+        $(function(){
+            $('#btn1').click(function(){
+                $('div').animate({left:'250px'});
+            })
+        });
+    </script>
+</head>
+<body>
+    <input type="button" value="动" id="btn1"/>
+
+    <div id="div1"></div>
+</body>
+</html>
